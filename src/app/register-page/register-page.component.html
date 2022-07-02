@@ -1,0 +1,114 @@
+<div class="container">
+  <div class="header">
+    <h1 class="header-text">
+      <img class="vector" src="../../assets/images/Vector.png" alt="Vector" />
+      Redberry Knight Cup
+    </h1>
+    <div class="image">
+      <h2>"when you see a good move, look for a better one."</h2>
+      <span class="name-surname-header">-emanuel lasker</span>
+      <img src="../../assets/images/second-image.png" alt="second-image" />
+    </div>
+  </div>
+
+  <div class="content">
+    <h4 class="header-text-2">Start Creating Your Account</h4>
+    <hr />
+    <div class="navbar">
+      <section class="square">1</section>
+      <div class="line"></div>
+      <section class="square2">2</section>
+    </div>
+    <div class="info">
+      <p>Personal information</p>
+      <p>Chess experience</p>
+    </div>
+    <div class="registration">
+      <h3 class="personal-info">Personal information</h3>
+      <p class="small-text">This Is Basic Information fields</p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <input
+          placeholder="Name"
+          type="text"
+          class="form-control"
+          formControlName="name"
+        />
+        <p
+          style="color: red"
+          *ngIf="!form.controls['name'].valid && form.controls['name'].touched"
+        >
+          Nickname is not valid
+        </p>
+      </div>
+
+      <div class="form-group">
+        <input
+          placeholder="Email Address"
+          type="email"
+          class="form-control"
+          formControlName="email"
+        />
+        <p
+          style="color: red"
+          *ngIf="
+            !form.controls['email'].valid && form.controls['email'].touched
+          "
+        >
+          Email is not valid
+        </p>
+      </div>
+
+      <div class="form-group">
+        <input
+          placeholder="Phone Number"
+          type="text"
+          class="form-control"
+          formControlName="phonenumber"
+        />
+        <p
+          style="color: red"
+          *ngIf="
+            !form.controls['phonenumber'].valid &&
+            form.controls['phonenumber'].touched
+          "
+        >
+          Phone number is not valid
+        </p>
+      </div>
+      <div class="form-group">
+        <input
+          placeholder="Date of birth"
+          type="datetime"
+          class="form-control"
+          formControlName="date_of_birth"
+        />
+        <p
+          style="color: red"
+          *ngIf="
+            !form.controls['date_of_birth'].valid &&
+            form.controls['date_of_birth'].touched
+          "
+        >
+          Phone number is not valid
+        </p>
+      </div>
+    </form>
+
+    <div class="buttons">
+      <button class="black-button" [routerLink]="['/home']">
+        <span class="black-button-text">Back</span>
+      </button>
+      <button
+        class="next-button"
+        [disabled]="!form.valid"
+        [routerLink]="['/home']"
+      >
+        <span class="next-button-text">Next</span>
+        <img src="../../assets/images/GetStartedIcon.png" alt="" />
+      </button>
+    </div>
+  </div>
+</div>
