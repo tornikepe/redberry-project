@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
 .container{
   display: flex;
   font-family: 'Nunito', sans-serif;
@@ -101,34 +102,58 @@ hr{
 form{
   margin-left: 45px;
   margin-top: 100px;
-  line-height: 60px;
+  line-height: 70px;
 }
 input{
   border-radius: 3px;
   border-top: none;
   border-left: none;
   border-right: none;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: #FFFFFF;
   width: 775px;
-  height: 30px;
+  height: 46px;
   text-indent: 3px;
+  font-size: 20px;
 }
-
 input:focus{
   outline: none;
-  background-color: #E9ECEF;
+  background-color: rgba(0, 0, 0, 0.125);
   border: 1px solid rgba(255, 255, 255, 0);
 }
 input:hover{
   cursor: pointer;
-  background-color: #E9ECEF;
+  background-color: #F8F9FA;
+
 }
+mat-form-field{
+  width: 775px;
+  height: 30px;
+}
+mat-label{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  margin-left: 5px;
+
+}
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: rgba(255, 255, 255, 0) !important;
+ }
+ ::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: rgb(0, 0, 0) !important;
+ }
+ ::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: white !important;;
+ }
 
 ::placeholder {
-  color: black;
+  font-size: 20px;
+  color: #000000;
   opacity: 1;
 }
-
 
 .black-button{
   background-color: #212529;
@@ -179,6 +204,119 @@ input:hover{
   top: 1px;
   left: 7px;
 }
-.button:hover{
+.next-button:hover{
+  border: 5px solid #C2A5F9CC;
   cursor: pointer;
+}
+.black-button:hover{
+  cursor: pointer;
+  background-color: #B9B4C34D;
+}
+///////////////////////////////////////////
+
+.form-group{
+  height: 80px;
+}
+.invalid-info{
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;  width: 350px;
+  height: 102px;
+  border-radius: 7px;
+  border: solid rgba(0, 0, 0, 0.15);
+  position: relative;
+  bottom: 350px;
+  margin-left: 550px;
+  -webkit-animation: cssAnimation 5s forwards;
+  animation: cssAnimation 3s forwards;
+}
+.invalid-info2{
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;  width: 350px;
+  height: 102px;
+  border-radius: 7px;
+  border: solid rgba(0, 0, 0, 0.15);
+  position: relative;
+  bottom: 430px;
+  margin-left: 550px;
+  -webkit-animation: cssAnimation 5s forwards;
+  animation: cssAnimation 3s forwards;
+}
+.invalid-info3{
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;  width: 350px;
+  height: 102px;
+  border-radius: 7px;
+  border: solid rgba(0, 0, 0, 0.15);
+  position: relative;
+  bottom: 510px;
+  margin-left: 550px;
+  -webkit-animation: cssAnimation 5s forwards;
+  animation: cssAnimation 3s forwards;
+}
+.invalid-info4{
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;  width: 350px;
+  height: 102px;
+  border-radius: 7px;
+  border: solid rgba(0, 0, 0, 0.15);
+  position: relative;
+  bottom: 586px;
+  margin-left: 550px;
+  -webkit-animation: cssAnimation 5s forwards;
+  animation: cssAnimation 3s forwards;
+}
+.invalid-operation-2{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+  color: #DC3545;
+  font-size: 14px;
+  margin-left: 5px;
+}
+.pevn-2{
+  font-size: 16px;
+  position: relative;
+  top: 5px;
+  margin-left: 22px;
+}
+@keyframes cssAnimation {
+  0%   {opacity: 1;}
+  90%  {opacity: 1;}
+  100% {opacity: 0;}
+}
+@-webkit-keyframes cssAnimation {
+  0%   {opacity: 1;}
+  90%  {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+.section-one{
+  height: 40px;
+  display: flex;
+}
+.error-vector{
+  margin-left: 20px;
+  margin-top: 13px;
+  width: 20px;
+  height: 20px;
+}
+.x-icon{
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  margin-left: 190px;
+  margin-top: 15px;
+}
+.invalid-operation{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+  color: #DC3545;
+  font-size: 14px;
+  position: relative;
+  bottom: 26px;
+  margin-left: 5px;
+}
+.section-two{
+  height: auto;
+}
+.pevn{
+  font-size: 16px;
+  position: relative;
+  bottom: 22px;
+  margin-left: 22px;
 }

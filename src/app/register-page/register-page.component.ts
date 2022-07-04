@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
@@ -13,7 +14,11 @@ import { Router } from '@angular/router';
 })
 export class RegisterPageComponent implements OnInit {
   form: FormGroup = new FormGroup({});
-
+  show: boolean = false;
+  toggle() {
+    this.show = !this.show;
+    console.log(this.show);
+  }
   constructor(private fb: FormBuilder) {
     this.form = fb.group({
       name: [null, [Validators.required, Validators.minLength(2)]],
@@ -26,14 +31,12 @@ export class RegisterPageComponent implements OnInit {
         ],
       ],
       phonenumber: [null, [Validators.required, Validators.minLength(9)]],
-      date_of_birth: [null, [Validators.required]],
+      date_of_birth: [null, Validators.required],
     });
   }
 
   ngOnInit(): void {}
-  get f() {
-    return this.form.controls;
-  }
+
   onSubmit() {
     // const obj = {
     //   name: this.form.value.name,
@@ -50,5 +53,6 @@ export class RegisterPageComponent implements OnInit {
     //     alert("Something went wrong");
     //   }
     // );
+    console.log(this.form.value.name);
   }
 }

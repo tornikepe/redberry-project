@@ -15,7 +15,21 @@
     <h4 class="header-text-2">Start Creating Your Account</h4>
     <hr />
     <div class="navbar">
-      <section class="square">1</section>
+      <section
+        class="square"
+        [ngStyle]="{
+          'background-color':
+            !form.value.name &&
+            !form.value.email &&
+            !form.value.phonenumber &&
+            !form.value.date_of_birth
+              ? 'white'
+              : '#E9FAF1'
+        }"
+      >
+        1
+      </section>
+
       <div class="line"></div>
       <section class="square2">2</section>
     </div>
@@ -28,73 +42,152 @@
       <p class="small-text">This Is Basic Information fields</p>
     </div>
 
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form [formGroup]="form">
       <div class="form-group">
         <input
-          placeholder="Name"
+          name="name"
+          placeholder="Name *"
           type="text"
           class="form-control"
           formControlName="name"
+          [ngStyle]="{
+            'background-color':
+              !form.controls['name'].valid && form.controls['name'].touched
+                ? '#FFEFEF'
+                : '#F5F5F5'
+          }"
         />
-        <p
-          style="color: red"
+        <div
+          class="invalid-info"
           *ngIf="!form.controls['name'].valid && form.controls['name'].touched"
         >
-          Nickname is not valid
-        </p>
+          <section class="section-one">
+            <img
+              class="error-vector"
+              src="../../assets/images/error-vector.jpg"
+              alt="error-vector"
+            />
+            <p class="invalid-operation">Invalid name</p>
+
+            <img class="x-icon" src="../../assets/images/X.png" alt="x-icon" />
+          </section>
+
+          <hr />
+          <section class="section-two">
+            <p class="pevn">Please enter valid name</p>
+          </section>
+        </div>
       </div>
 
       <div class="form-group">
         <input
-          placeholder="Email Address"
+          placeholder="Email Address *"
           type="email"
           class="form-control"
           formControlName="email"
         />
-        <p
-          style="color: red"
+        <div
+          class="invalid-info2"
           *ngIf="
             !form.controls['email'].valid && form.controls['email'].touched
           "
         >
-          Email is not valid
-        </p>
+          <section class="section-one">
+            <img
+              class="error-vector"
+              src="../../assets/images/error-vector.jpg"
+              alt="error-vector"
+            />
+            <p class="invalid-operation">Invalid email</p>
+
+            <img class="x-icon" src="../../assets/images/X.png" alt="x-icon" />
+          </section>
+
+          <hr />
+          <section class="section-two">
+            <p class="pevn">Please enter valid email</p>
+          </section>
+        </div>
       </div>
 
       <div class="form-group">
         <input
-          placeholder="Phone Number"
-          type="text"
+          placeholder="Phone Number *"
           class="form-control"
           formControlName="phonenumber"
+          [ngStyle]="{
+            'background-color':
+              !form.controls['phonenumber'].valid &&
+              form.controls['phonenumber'].touched
+                ? '#FFEFEF'
+                : '#F5F5F5'
+          }"
         />
-        <p
-          style="color: red"
+        <div
+          class="invalid-info3"
           *ngIf="
             !form.controls['phonenumber'].valid &&
             form.controls['phonenumber'].touched
           "
         >
-          Phone number is not valid
-        </p>
+          <section class="section-one">
+            <img
+              class="error-vector"
+              src="../../assets/images/error-vector.jpg"
+              alt="error-vector"
+            />
+            <p class="invalid-operation">Invalid phone</p>
+
+            <img class="x-icon" src="../../assets/images/X.png" alt="x-icon" />
+          </section>
+
+          <hr />
+          <section class="section-two">
+            <p class="pevn">Please enter valid phone number</p>
+          </section>
+        </div>
       </div>
-      <div class="form-group">
+
+      <mat-form-field>
+        <mat-label>Date of birth</mat-label>
         <input
-          placeholder="Date of birth"
-          type="datetime"
-          class="form-control"
+          matInput
           formControlName="date_of_birth"
+          [matDatepicker]="picker"
+          [ngStyle]="{
+            'background-color':
+              !form.controls['date_of_birth'].valid &&
+              form.controls['date_of_birth'].touched
+                ? '#FFEFEF'
+                : '#F5F5F5'
+          }"
         />
-        <p
-          style="color: red"
+        <div
+          class="invalid-info4"
           *ngIf="
             !form.controls['date_of_birth'].valid &&
             form.controls['date_of_birth'].touched
           "
         >
-          Phone number is not valid
-        </p>
-      </div>
+          <section class="section-one">
+            <img
+              class="error-vector"
+              src="../../assets/images/error-vector.jpg"
+              alt="error-vector"
+            />
+            <p class="invalid-operation-2">Invalid date</p>
+
+            <img class="x-icon" src="../../assets/images/X.png" alt="x-icon" />
+          </section>
+
+          <hr />
+          <section class="section-two">
+            <p class="pevn-2">Please enter valid birth date</p>
+          </section>
+        </div>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
     </form>
 
     <div class="buttons">
@@ -105,6 +198,7 @@
         class="next-button"
         [disabled]="!form.valid"
         [routerLink]="['/home']"
+        (click)="onSubmit()"
       >
         <span class="next-button-text">Next</span>
         <img src="../../assets/images/GetStartedIcon.png" alt="" />
