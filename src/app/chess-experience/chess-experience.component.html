@@ -40,7 +40,9 @@
         class="square2"
         [ngStyle]="{
           'background-color':
-            !form.value.experience_level && !form.value.participated
+            !form.value.experience_level &&
+            !form.value.character &&
+            !form.value.participated
               ? 'white'
               : '#E9FAF1'
         }"
@@ -69,18 +71,19 @@
     </div>
 
     <form [formGroup]="form">
-      <select formArrayName="experience_level">
+      <select formControlName="experience_level">
         <option value="" selected disabled hidden>level of knowledge *</option>
         <option value="Beginner">Beginner</option>
         <option value="Intermediate">Intermediate</option>
         <option value="Professional">Professional</option>
       </select>
-      <select formArrayName="character" id="select2">
+
+      <select formControlName="character" id="select2">
         <option value="" selected disabled hidden>
           Choose your character *
         </option>
         <option class="characters" *ngFor="let item of imagesData">
-          {{ item.name }} {{ item.images }}
+          {{ item.name }}
         </option>
       </select>
 

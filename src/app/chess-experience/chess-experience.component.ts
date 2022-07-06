@@ -18,9 +18,7 @@ export class ChessExperienceComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getImageData().subscribe((res: any) => {
       this.imagesData = res;
-      this.imagesData.map((e: any) => {
-        console.log(e);
-      });
+      this.imagesData.map((e: any) => {});
     });
   }
   constructor(
@@ -29,9 +27,9 @@ export class ChessExperienceComponent implements OnInit {
     private router: Router
   ) {
     this.form = this.fb.group({
-      experience_level: [null, [Validators.required]],
+      experience_level: ['', [Validators.required]],
+      character: ['', [Validators.required]],
       participated: [null, [Validators.required]],
-      character: [null, [Validators.required]],
     });
   }
 
@@ -69,7 +67,6 @@ export class ChessExperienceComponent implements OnInit {
       already_participated: participated,
       character_id: 2,
     };
-    console.log(obj);
 
     // const currentObj = this.userService.setData2(obj);
     // const fullObj = localStorage.getItem('user-form');
