@@ -1,0 +1,124 @@
+<div class="container">
+  <div class="header">
+    <h1 class="header-text">
+      <img class="vector" src="../../assets/images/Vector.png" alt="Vector" />
+      Redberry Knight Cup
+    </h1>
+    <div class="image">
+      <h2>
+        "many have become chess masters; <br />
+        no one has become the master of chess"
+      </h2>
+      <span class="name-surname-header">-siegbert tarrasch</span>
+      <img
+        class="third-image"
+        src="../../assets/images/3-image.png"
+        alt="second-image"
+      />
+    </div>
+  </div>
+
+  <div class="content">
+    <h4 class="header-text-2">
+      First Step Is Done, Continue To Finish Onboarding
+    </h4>
+    <hr />
+    <div class="navbar">
+      <section class="square">
+        <div class="square3" [ngStyle]="{ 'background-color': '#E9FAF1' }">
+          <img
+            class="double-success"
+            src="../../assets/images/Vector-double-success.png"
+            alt="double-success"
+          />
+        </div>
+      </section>
+
+      <div class="line"></div>
+      <section
+        *ngIf="!form.valid"
+        class="square2"
+        [ngStyle]="{
+          'background-color':
+            !form.value.experience_level && !form.value.participated
+              ? 'white'
+              : '#E9FAF1'
+        }"
+      >
+        2
+      </section>
+      <div
+        *ngIf="form.valid"
+        class="success-everything"
+        [ngStyle]="{ 'background-color': '#E9FAF1' }"
+      >
+        <img
+          class="double-success-2"
+          src="../../assets/images/Vector-double-success.png"
+          alt="double-success"
+        />
+      </div>
+    </div>
+    <div class="info">
+      <p>Personal information</p>
+      <p>Chess experience</p>
+    </div>
+    <div class="registration">
+      <h3 class="personal-info">Chess experience</h3>
+      <p class="small-text">This Is Basic Information Fields</p>
+    </div>
+
+    <form [formGroup]="form">
+      <select formArrayName="experience_level">
+        <option value="" selected disabled hidden>level of knowledge *</option>
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Professional">Professional</option>
+      </select>
+      <select formArrayName="character" id="select2">
+        <option value="" selected disabled hidden>
+          Choose your character *
+        </option>
+        <option class="characters" *ngFor="let item of imagesData">
+          {{ item.name }} {{ item.images }}
+        </option>
+      </select>
+
+      <div class="participated">
+        <label class="label-text" for="ok"
+          >Have you participated in the Redberry Championship? *</label
+        >
+        <br />
+        <input
+          id="yes"
+          type="radio"
+          value="Yes"
+          name="participated"
+          formControlName="participated"
+        />Yes
+        <input
+          id="no"
+          type="radio"
+          value="No"
+          name="participated"
+          formControlName="participated"
+        />No
+      </div>
+    </form>
+
+    <div class="buttons">
+      <button class="back-button" [routerLink]="['/register']">
+        <span class="back-button-text">Back</span>
+      </button>
+      <button
+        class="next-button"
+        [disabled]="!form.valid"
+        [routerLink]="['/register']"
+        (click)="onSubmit()"
+      >
+        <span class="next-button-text">Done</span>
+        <img src="../../assets/images/GetStartedIcon.png" alt="" />
+      </button>
+    </div>
+  </div>
+</div>

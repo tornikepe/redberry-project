@@ -14,9 +14,17 @@ import { FirstPageComponent } from './first-page/first-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ChessExperienceComponent } from './chess-experience/chess-experience.component';
+import { LastPageComponent } from './last-page/last-page.component';
 
 @NgModule({
-  declarations: [AppComponent, FirstPageComponent, RegisterPageComponent],
+  declarations: [
+    AppComponent,
+    FirstPageComponent,
+    RegisterPageComponent,
+    ChessExperienceComponent,
+    LastPageComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

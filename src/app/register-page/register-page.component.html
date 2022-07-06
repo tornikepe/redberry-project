@@ -17,6 +17,7 @@
     <div class="navbar">
       <section
         class="square"
+        *ngIf="!form.valid"
         [ngStyle]="{
           'background-color':
             !form.value.name &&
@@ -29,6 +30,17 @@
       >
         1
       </section>
+      <div
+        *ngIf="form.valid"
+        class="square3"
+        [ngStyle]="{ 'background-color': '#E9FAF1' }"
+      >
+        <img
+          class="double-success"
+          src="../../assets/images/Vector-double-success.png"
+          alt="double-success"
+        />
+      </div>
 
       <div class="line"></div>
       <section class="square2">2</section>
@@ -39,7 +51,7 @@
     </div>
     <div class="registration">
       <h3 class="personal-info">Personal information</h3>
-      <p class="small-text">This Is Basic Information fields</p>
+      <p class="small-text">This Is Basic Information Fields</p>
     </div>
 
     <form [formGroup]="form">
@@ -50,16 +62,16 @@
           type="text"
           class="form-control"
           formControlName="name"
-          [ngStyle]="{
-            'background-color':
-              !form.controls['name'].valid && form.controls['name'].touched
-                ? '#FFEFEF'
-                : '#F5F5F5'
-          }"
         />
+
+        <div *ngIf="form.controls['name'].valid" class="success-vector">
+          <img src="../../assets/images/Vector-success.jpg" alt="" />
+        </div>
+
         <div
           class="invalid-info"
           *ngIf="!form.controls['name'].valid && form.controls['name'].touched"
+          [hidden]="show"
         >
           <section class="section-one">
             <img
@@ -69,7 +81,12 @@
             />
             <p class="invalid-operation">Invalid name</p>
 
-            <img class="x-icon" src="../../assets/images/X.png" alt="x-icon" />
+            <img
+              class="x-icon"
+              (click)="toggle1()"
+              src="../../assets/images/X.png"
+              alt="x-icon"
+            />
           </section>
 
           <hr />
@@ -86,11 +103,16 @@
           class="form-control"
           formControlName="email"
         />
+        <div *ngIf="form.controls['email'].valid" class="success-vector">
+          <img src="../../assets/images/Vector-success.jpg" alt="" />
+        </div>
+
         <div
           class="invalid-info2"
           *ngIf="
             !form.controls['email'].valid && form.controls['email'].touched
           "
+          [hidden]="show2"
         >
           <section class="section-one">
             <img
@@ -99,8 +121,12 @@
               alt="error-vector"
             />
             <p class="invalid-operation">Invalid email</p>
-
-            <img class="x-icon" src="../../assets/images/X.png" alt="x-icon" />
+            <img
+              class="x-icon"
+              (click)="toggle2()"
+              src="../../assets/images/X.png"
+              alt="x-icon"
+            />
           </section>
 
           <hr />
@@ -115,30 +141,33 @@
           placeholder="Phone Number *"
           class="form-control"
           formControlName="phonenumber"
-          [ngStyle]="{
-            'background-color':
-              !form.controls['phonenumber'].valid &&
-              form.controls['phonenumber'].touched
-                ? '#FFEFEF'
-                : '#F5F5F5'
-          }"
         />
+        <div *ngIf="form.controls['phonenumber'].valid" class="success-vector">
+          <img src="../../assets/images/Vector-success.jpg" alt="" />
+        </div>
+
         <div
           class="invalid-info3"
           *ngIf="
             !form.controls['phonenumber'].valid &&
             form.controls['phonenumber'].touched
           "
+          [hidden]="show3"
         >
           <section class="section-one">
             <img
-              class="error-vector"
+              class="error-vector-2"
               src="../../assets/images/error-vector.jpg"
               alt="error-vector"
             />
             <p class="invalid-operation">Invalid phone</p>
 
-            <img class="x-icon" src="../../assets/images/X.png" alt="x-icon" />
+            <img
+              class="x-icon"
+              (click)="toggle3()"
+              src="../../assets/images/X.png"
+              alt="x-icon"
+            />
           </section>
 
           <hr />
@@ -154,30 +183,35 @@
           matInput
           formControlName="date_of_birth"
           [matDatepicker]="picker"
-          [ngStyle]="{
-            'background-color':
-              !form.controls['date_of_birth'].valid &&
-              form.controls['date_of_birth'].touched
-                ? '#FFEFEF'
-                : '#F5F5F5'
-          }"
         />
+        <div
+          *ngIf="form.controls['date_of_birth'].valid"
+          class="success-vector-2"
+        >
+          <img src="../../assets/images/Vector-success.jpg" alt="" />
+        </div>
         <div
           class="invalid-info4"
           *ngIf="
             !form.controls['date_of_birth'].valid &&
             form.controls['date_of_birth'].touched
           "
+          [hidden]="show4"
         >
           <section class="section-one">
             <img
-              class="error-vector"
+              class="error-vector-3"
               src="../../assets/images/error-vector.jpg"
               alt="error-vector"
             />
             <p class="invalid-operation-2">Invalid date</p>
 
-            <img class="x-icon" src="../../assets/images/X.png" alt="x-icon" />
+            <img
+              class="x-icon-2"
+              (click)="toggle4()"
+              src="../../assets/images/X.png"
+              alt="x-icon"
+            />
           </section>
 
           <hr />
@@ -197,7 +231,7 @@
       <button
         class="next-button"
         [disabled]="!form.valid"
-        [routerLink]="['/home']"
+        [routerLink]="['/chess-experience']"
         (click)="onSubmit()"
       >
         <span class="next-button-text">Next</span>
