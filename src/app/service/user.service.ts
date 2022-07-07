@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -8,6 +7,8 @@ import { Observable } from 'rxjs';
 export class UserService {
   registerUrl: string = 'https://chess-tournament-api.devtest.ge/api/register';
   imageUrl: string = 'https://chess-tournament-api.devtest.ge/api/grandmasters';
+  data: any = {};
+
   constructor(private http: HttpClient) {}
 
   addUser(obj: any) {

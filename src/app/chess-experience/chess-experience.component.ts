@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../service/user.service';
 @Component({
@@ -8,18 +13,18 @@ import { UserService } from '../service/user.service';
   styleUrls: ['./chess-experience.component.scss'],
 })
 export class ChessExperienceComponent implements OnInit {
+  show: boolean = false;
+
   form: FormGroup = new FormGroup({});
   imagesData: any = [];
-  images: any = [];
-  // characters.forEach(function(elem,i){
-  // let id = data[i].id
-  // let image = data[id-1].image
-  // elem.innerHTML = <li class="character"> ${data[id-1].name} <img src="https://chess-tournament-api.devtest.ge/${image}" alt=""></li>;
+  userData: any = {};
+  userId: number = 0;
   ngOnInit(): void {
     this.userService.getImageData().subscribe((res: any) => {
       this.imagesData = res;
-      this.imagesData.map((e: any) => {});
     });
+
+    this.userData = this.userService.data;
   }
   constructor(
     private fb: FormBuilder,
@@ -28,10 +33,10 @@ export class ChessExperienceComponent implements OnInit {
   ) {
     this.form = this.fb.group({
       experience_level: ['', [Validators.required]],
-      character: ['', [Validators.required]],
       participated: [null, [Validators.required]],
     });
   }
+  characters = new FormControl('', [Validators.required]);
 
   isTrue(value: any) {
     if (typeof value === 'string') {
@@ -51,6 +56,8 @@ export class ChessExperienceComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.characters.valid);
+
     // აქ რექვესთვისთვის ვამზადებ, რადგან დაბალ რეგისტრში ეშვება პოსტ რექუესტი
     const str = this.form.value.experience_level || '';
     let experience_level = typeof str === 'string' ? str.toLowerCase() : '';
@@ -58,26 +65,35 @@ export class ChessExperienceComponent implements OnInit {
     if (experience_level === 'intermediate') {
       experience_level = 'normal';
     }
-
-    // სტრინგი გადამყავს Boolean ში, ფუნქციით
+    // სტრინგი გადამყავს Boolean ში, ფუნქციით isTrue()
     let participated = this.isTrue(this.form.value.participated);
 
     const obj = {
       experience_level: experience_level,
       already_participated: participated,
-      character_id: 2,
+      character_id: this.userId,
     };
+
+    // ინახება მთლიანი data user ის
+    const final = { ...this.userData, ...obj };
 
     // const currentObj = this.userService.setData2(obj);
     // const fullObj = localStorage.getItem('user-form');
 
-    // this.userService.addUser(obj).subscribe(
-    //   (res) => {
-    // this.form.reset();
-    //   },
-    //   (err) => {
-    //     alert('Something went wrong');
-    //   }
-    // );
+    // ვუშვებ post request-ს
+    this.userService.addUser(final).subscribe(
+      (res) => {
+        console.log('success');
+      },
+      (err) => {
+        alert('Something went wrong');
+      }
+    );
+  }
+  catchId(id: number) {
+    this.userId = id;
+  }
+  toggle1() {
+    this.show = !this.show;
   }
 }

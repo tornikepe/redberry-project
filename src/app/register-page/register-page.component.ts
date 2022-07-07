@@ -18,7 +18,6 @@ export class RegisterPageComponent implements OnInit {
   show2: boolean = false;
   show3: boolean = false;
   show4: boolean = false;
-  // show5: boolean = false;
 
   ngOnInit(): void {}
   constructor(
@@ -40,32 +39,15 @@ export class RegisterPageComponent implements OnInit {
         null,
         [
           Validators.required,
+          Validators.maxLength(9),
           Validators.minLength(9),
           Validators.pattern('^[0-9]*$'),
         ],
       ],
       date_of_birth: [null, Validators.required],
-      // experience_level: [null, [Validators.required]],
-      // participated: [null, [Validators.required]],
-      // character: [null, [Validators.required]],
     });
   }
-  // isTrue(value: any) {
-  //   if (typeof value === 'string') {
-  //     value = value.trim().toLowerCase();
-  //   }
-  //   switch (value) {
-  //     case true:
-  //     case 'true':
-  //     case 1:
-  //     case '1':
-  //     case 'on':
-  //     case 'yes':
-  //       return true;
-  //     default:
-  //       return false;
-  //   }
-  // }
+
   padTo2Digits(num: any) {
     return num.toString().padStart(2, '0');
   }
@@ -86,47 +68,14 @@ export class RegisterPageComponent implements OnInit {
       phone: this.form.value.phonenumber as string,
       date_of_birth: userDate,
     };
-    this.userService.setData(obj);
-    console.log(this.form.valid);
 
-    // this.userService.addUser(obj).subscribe(
-    //   (res) => {
-    //     this.form.reset();
-    //   },
-    //   (err) => {
-    //     alert('Something went wrong');
-    //   }
-    // );
+    // ვინახავ ფორმის მონაცემებს სერვისში და შემდეგ chess-experience
+    // კომპონენტში ვიყენენებ
+    this.userService.data = obj;
+
+    // this.userService.setData(obj);
   }
-  // onSubmit2() {
-  //   const str = this.form.value.experience_level || '';
-  //   let experience_level = typeof str === 'string' ? str.toLowerCase() : '';
 
-  //   if (experience_level === 'intermediate') {
-  //     experience_level = 'normal';
-  //   }
-
-  //   let participated = this.isTrue(this.form.value.participated);
-  //   console.log(experience_level, participated);
-
-  //   const obj = {
-  //     experience_level: experience_level,
-  //     already_participated: participated,
-  //     character_id: 2,
-  //   };
-  //   const currentObj = this.userService.setData2(obj);
-  //   const fullObj = localStorage.getItem('user-form');
-  //   console.log(fullObj);
-  //   console.log(currentObj);
-  //   // this.userService.addUser(obj).subscribe(
-  //   //   (res) => {
-  //   this.form.reset();
-  //   //   },
-  //   //   (err) => {
-  //   //     alert('Something went wrong');
-  //   //   }
-  //   // );
-  // }
   toggle1() {
     this.show = !this.show;
   }
@@ -139,7 +88,4 @@ export class RegisterPageComponent implements OnInit {
   toggle4() {
     this.show4 = !this.show4;
   }
-  // toggle5() {
-  //   this.show5 = !this.show5;
-  // }
 }

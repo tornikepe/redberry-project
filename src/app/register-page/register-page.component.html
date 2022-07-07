@@ -141,6 +141,8 @@
           placeholder="Phone Number *"
           class="form-control"
           formControlName="phonenumber"
+          minlength="9"
+          maxlength="9"
         />
         <div *ngIf="form.controls['phonenumber'].valid" class="success-vector">
           <img src="../../assets/images/Vector-success.jpg" alt="" />

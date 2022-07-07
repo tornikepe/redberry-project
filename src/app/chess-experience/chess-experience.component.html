@@ -41,7 +41,7 @@
         [ngStyle]="{
           'background-color':
             !form.value.experience_level &&
-            !form.value.character &&
+            !characters.value &&
             !form.value.participated
               ? 'white'
               : '#E9FAF1'
@@ -78,14 +78,33 @@
         <option value="Professional">Professional</option>
       </select>
 
-      <select formControlName="character" id="select2">
-        <option value="" selected disabled hidden>
-          Choose your character *
-        </option>
-        <option class="characters" *ngFor="let item of imagesData">
-          {{ item.name }}
-        </option>
-      </select>
+      <mat-form-field id="select2">
+        <mat-label>Choose your character </mat-label>
+        <mat-select [formControl]="characters">
+          <mat-option
+            class="characters"
+            *ngFor="let item of imagesData"
+            value="option"
+            required
+            (click)="catchId(item.id)"
+          >
+            <div class="tests">
+              <img
+                class="api-images"
+                src="https://chess-tournament-api.devtest.ge/{{ item.image }}"
+              />
+              <!--
+                 ეს ტესქსტი იმიტომ გადავიტანე მეორე მხარეს
+                რომ არ ჯდებოდა სურათები კარგად და არც სწორდებოდა
+              -->
+              {{ item.name }}
+            </div>
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="characters.hasError('required')"
+          >Please choose an character</mat-error
+        >
+      </mat-form-field>
 
       <div class="participated">
         <label class="label-text" for="ok"
@@ -108,6 +127,15 @@
         />No
       </div>
     </form>
+    <p
+      class="error-text-experience-level"
+      *ngIf="
+        !form.controls['experience_level'].valid &&
+        form.controls['experience_level'].touched
+      "
+    >
+      Please choose one of them
+    </p>
 
     <div class="buttons">
       <button class="back-button" [routerLink]="['/register']">
@@ -115,8 +143,8 @@
       </button>
       <button
         class="next-button"
-        [disabled]="!form.valid"
-        [routerLink]="['/register']"
+        [disabled]="!form.valid || !characters.valid"
+        [routerLink]="['/last-page']"
         (click)="onSubmit()"
       >
         <span class="next-button-text">Done</span>

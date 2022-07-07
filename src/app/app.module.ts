@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChessExperienceComponent } from './chess-experience/chess-experience.component';
 import { LastPageComponent } from './last-page/last-page.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { LastPageComponent } from './last-page/last-page.component';
     MatNativeDateModule,
     MatInputModule,
     MatFormFieldModule,
+    MatSelectModule,
+    FormsModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],
