@@ -5,7 +5,6 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
 import { UserService } from '../service/user.service';
 @Component({
   selector: 'app-chess-experience',
@@ -26,11 +25,7 @@ export class ChessExperienceComponent implements OnInit {
 
     this.userData = this.userService.data;
   }
-  constructor(
-    private fb: FormBuilder,
-    private userService: UserService,
-    private router: Router
-  ) {
+  constructor(private fb: FormBuilder, private userService: UserService) {
     this.form = this.fb.group({
       experience_level: ['', [Validators.required]],
       participated: [null, [Validators.required]],
@@ -56,8 +51,6 @@ export class ChessExperienceComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.characters.valid);
-
     // აქ რექვესთვისთვის ვამზადებ, რადგან დაბალ რეგისტრში ეშვება პოსტ რექუესტი
     const str = this.form.value.experience_level || '';
     let experience_level = typeof str === 'string' ? str.toLowerCase() : '';

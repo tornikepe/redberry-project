@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../service/user.service';
 @Component({
@@ -73,7 +68,7 @@ export class RegisterPageComponent implements OnInit {
     // კომპონენტში ვიყენენებ
     this.userService.data = obj;
 
-    // this.userService.setData(obj);
+    this.userService.setData(obj);
   }
 
   toggle1() {

@@ -18,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ChessExperienceComponent } from './chess-experience/chess-experience.component';
 import { LastPageComponent } from './last-page/last-page.component';
 import { MatSelectModule } from '@angular/material/select';
+import { PageNotFountComponent } from './page-not-fount/page-not-fount.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { MatSelectModule } from '@angular/material/select';
     RegisterPageComponent,
     ChessExperienceComponent,
     LastPageComponent,
+    PageNotFountComponent,
   ],
   imports: [
     BrowserModule,
