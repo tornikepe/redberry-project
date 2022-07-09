@@ -19,18 +19,6 @@ const routes: Routes = [
   },
   { path: 'last-page', component: LastPageComponent },
   { path: '**', component: PageNotFountComponent }, // Wildcard route for a 404 page
-
-  // { path: "login", component: LoginComponent, canActivate: [UsersGuard] },
-  // {
-  //   path: "user",
-  //   canActivate: [LoginGuard],
-  //   children: [
-  //     { path: "", component: EmployeesListComponent },
-  //     { path: "delete/:id", component: DeleteComponent },
-  //     { path: "edit/:id", component: EditComponent },
-  //     { path: "view/:id", component: ViewComponent },
-  //   ],
-  // },
 ];
 
 @NgModule({

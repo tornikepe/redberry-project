@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -12,12 +13,11 @@ import { UserService } from '../service/user.service';
   styleUrls: ['./chess-experience.component.scss'],
 })
 export class ChessExperienceComponent implements OnInit {
-  show: boolean = false;
-
-  form: FormGroup = new FormGroup({});
-  imagesData: any = [];
-  userData: any = {};
-  userId: number = 0;
+  public show: boolean = false;
+  public form: FormGroup = new FormGroup({});
+  public imagesData: any = [];
+  public userData: any = {};
+  public userId: number = 0;
   ngOnInit(): void {
     this.userService.getImageData().subscribe((res: any) => {
       this.imagesData = res;
@@ -25,7 +25,11 @@ export class ChessExperienceComponent implements OnInit {
 
     this.userData = this.userService.data;
   }
-  constructor(private fb: FormBuilder, private userService: UserService) {
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private router: Router
+  ) {
     this.form = this.fb.group({
       experience_level: ['', [Validators.required]],
       participated: [null, [Validators.required]],
@@ -61,14 +65,14 @@ export class ChessExperienceComponent implements OnInit {
     // სტრინგი გადამყავს Boolean ში, ფუნქციით isTrue()
     let participated = this.isTrue(this.form.value.participated);
 
-    const obj = {
+    const userInfo = {
       experience_level: experience_level,
       already_participated: participated,
       character_id: this.userId,
     };
 
     // ინახება მთლიანი data user ის
-    const final = { ...this.userData, ...obj };
+    const final = { ...this.userData, ...userInfo };
 
     // const currentObj = this.userService.setData2(obj);
     // const fullObj = localStorage.getItem('user-form');
@@ -82,6 +86,8 @@ export class ChessExperienceComponent implements OnInit {
         alert('Something went wrong');
       }
     );
+    this.userService.removeData();
+    this.router.navigate(['/last-page']);
   }
   catchId(id: number) {
     this.userId = id;

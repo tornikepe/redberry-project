@@ -88,7 +88,7 @@
             required
             (click)="catchId(item.id)"
           >
-            <div class="tests">
+            <div>
               <img
                 class="api-images"
                 src="https://chess-tournament-api.devtest.ge/{{ item.image }}"
@@ -144,7 +144,6 @@
       <button
         class="next-button"
         [disabled]="!form.valid || !characters.valid"
-        [routerLink]="['/last-page']"
         (click)="onSubmit()"
       >
         <span class="next-button-text">Done</span>
